@@ -1,0 +1,18 @@
+dataset_4man 이게 4명 천장씩 모은거
+
+
+usermaker.py -사용자 카메라에 연결해서 사진 찍는거
+trainer.py - 사용자 가중치 학습 코드
+trainer.yml,trainer_4man.yml-내가 모은데이터로 학습시킨 가중치야
+
+
+central_2.py - 이게 스캔용카메라모듈
+스캔해서 계산해서 mysql에 계산값을 넣어주는 역할
+
+talker_stt.py- 대화용 카메라모듈. 구글 stt에서 키 너계정으로 받아서 
+돌리면 음성인식이 됩니당.
+
+haarcascade_이게 그 얼굴인식 하기위한 xml 문서임 
+그냥 그대로 쓰면돼 오픈소스 (안건드려도됨)
+recognizer.py-는 그냥 이제 trainer.py돌리고 난 
+뒤에 잘 되나 실험용

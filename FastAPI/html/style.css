@@ -1,0 +1,41 @@
+:root {
+    --background-color : lightblue;
+    --bodybackground-color : lightgray;
+    --accent-color : black;
+    --text-color : black;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 160%;
+    background-color: var(--background-color);
+    padding: 8px 12px;
+  }
+
+  body { 
+    margin: 0;
+    background-color: var(--bodybackground-color);
+  }
+
+  .navbar__logo i {
+    color: var(--accent-color);
+    padding-left: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  .navbar__menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+  }
+  
+  .navbar__menu li {
+    padding: 8px 30px;
+  }

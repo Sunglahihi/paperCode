@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:8000/css">
+    <style>
+        #myCanvas{ border: 1px solid black; }
+    </style>
+    <title>Nav Bar</title>
+  </head>
+
+  <body>
+    <nav class="navbar" >
+
+      <div class="navbar__logo">
+        <i class="fas fa-blog"></i>
+        <a href=""><b>실시간 원격 화상</b></a>
+      </div>
+
+    </nav>
+
+    <div style="position:relative; left: 640px; top: 60px;">
+        <iframe width="640px" height="480px" src="http://localhost:8000/video">
+        </iframe>
+    </div>
+
+    <div style="position:relative; left: 480px; top: 90px">
+        <table border ="1"
+            width = "50%"
+            height = "100"
+            cellspacing = "2">
+            
+            <caption style="font-size:150%;"><strong>현재 위치</strong></caption>
+            <thead>
+                <tr align="center" bgColor="lightblue">
+                    <th><button onclick="btnClick('A')">A</button></th>
+                    <th><button onclick="btnClick('B')">B</button></th>
+                    <th><button onclick="btnClick('C')">C</button></th>
+                    <th><button onclick="btnClick('D')">D</button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr align="center" bgcolor="white">
+                    <td id="AA"></td>
+                    <td id="AB"></td>
+                    <td id="AC"></td>
+                    <td id="AD"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 0~45 46~90 91~135 136~180
+
+        function btnClick(name) {
+            console.log(name,"is clicked");
+            if (document.getElementById("A"+name).innerText == "☆") {
+                document.getElementById("A"+name).innerText = "";
+            }
+            else {
+                document.getElementById("A"+name).innerText = "☆";
+            }
+        }
+        
+        // data = db 값 리스트
+        setInterval(()=> 
+            fetch("http://localhost:8000/dbdb")
+                .then((response) => response.json())
+                .then((data) => {
+                        document.getElementById("AA").innerText = null;
+                        document.getElementById("AB").innerText = null;
+                        document.getElementById("AC").innerText = null;
+                        document.getElementById("AD").innerText = null;
+
+                        if(data[0].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[0].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[0].name;
+                            }
+                        } else if(data[0].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[0].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[0].name;
+                            }
+                        } else if(data[0].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[0].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[0].name;
+                            }
+                        } else if(data[0].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[0].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[0].name;
+                            }
+                        }
+
+                        if(data[1].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[1].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[1].name;
+                            }
+                        } else if(data[1].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[1].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[1].name;
+                            }
+                        } else if(data[1].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[1].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[1].name;
+                            }
+                        } else if(data[1].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[1].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[1].name;
+                            }
+                        }
+
+                        if(data[2].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[2].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[2].name;
+                            }
+                        } else if(data[2].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[2].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[2].name;
+                            }
+                        } else if(data[2].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[2].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[2].name;
+                            }
+                        } else if(data[2].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[2].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[2].name;
+                            }
+                        }
+
+                        if(data[3].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[3].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[3].name;
+                            }
+                        } else if(data[3].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[3].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[3].name;
+                            }
+                        } else if(data[3].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[3].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[3].name;
+                            }
+                        } else if(data[3].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[3].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[3].name;
+                            }
+                        }
+
+                        if(data[4].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[4].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[4].name;
+                            }
+                        } else if(data[4].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[4].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[4].name;
+                            }
+                        } else if(data[4].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[4].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[4].name;
+                            }
+                        } else if(data[4].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[4].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[4].name;
+                            }
+                        }
+
+                        if(data[5].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[5].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[5].name;
+                            }
+                        } else if(data[5].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[5].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[5].name;
+                            }
+                        } else if(data[5].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[5].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[5].name;
+                            }
+                        } else if(data[5].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[5].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[5].name;
+                            }
+                        }
+
+                        if(data[6].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[6].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[6].name;
+                            }
+                        } else if(data[6].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[6].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[6].name;
+                            }
+                        } else if(data[6].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[6].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[6].name;
+                            }
+                        } else if(data[6].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[6].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[6].name;
+                            }
+                        }
+
+                        if(data[7].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[7].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[7].name;
+                            }
+                        } else if(data[7].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[7].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[7].name;
+                            }
+                        } else if(data[7].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[7].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[7].name;
+                            }
+                        } else if(data[7].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[7].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[7].name;
+                            }
+                        }
+
+                        if(data[8].median >= 136) {
+                            if(document.getElementById("AD")== null) {
+                                document.getElementById("AD").innerText+=data[8].name;
+                            } else {
+                                document.getElementById("AD").innerText+="\n"+data[8].name;
+                            }
+                        } else if(data[8].median >= 91) {
+                            if(document.getElementById("AC")== null) {
+                                document.getElementById("AC").innerText+=data[8].name;
+                            } else {
+                                document.getElementById("AC").innerText+="\n"+data[8].name;
+                            }
+                        } else if(data[8].median >= 46) {
+                            if(document.getElementById("AB")== null) {
+                                document.getElementById("AB").innerText+=data[8].name;
+                            } else {
+                                document.getElementById("AB").innerText+="\n"+data[8].name;
+                            }
+                        } else if(data[8].median >= 0) {
+                            if(document.getElementById("AA")== null) {
+                                document.getElementById("AA").innerText+=data[8].name;
+                            } else {
+                                document.getElementById("AA").innerText+="\n"+data[8].name;
+                            }
+                        }
+                    }
+                )
+                .catch((error)=>console.log("finish server")), 3000)
+        
+    </script>
+
+
+  </body>
+</html>
